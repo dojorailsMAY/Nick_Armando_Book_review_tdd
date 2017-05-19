@@ -1,0 +1,22 @@
+<h1>Welcome, <%= @user.first_name %>!</h1>
+
+<div class="">
+  <h1>Recent Book Reviews:</h1>
+  <% @reviews.each do |review| %>
+    <div class="review">
+      <h3><a href="/books/<%=review.book.id%>"><%= review.book.title %></a></h3>
+      <p>Rating: <%= review.rating %></p>
+      <p> <a href="/users/<%=review.user.id%>"><%= review.user.first_name %></a> says: <%=review.content%></p>
+      <p>Posted on: <%= review.created_at %> </p>
+    </div>
+    <% end %>
+</div>
+
+<div class="">
+  <h1>Other Books with Reviews:</h1>
+  <div class="">
+    <% @books.each do |book| %>
+      <p class="other-books"><a href="/books/<%= book.id %>"><%= book.title %></a></p>
+    <% end %>
+  </div>
+</div>
