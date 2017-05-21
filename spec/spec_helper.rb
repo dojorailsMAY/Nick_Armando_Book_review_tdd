@@ -26,7 +26,25 @@ def register first_name:'John',last_name:"Doe",email:'john@doe.com', password:'p
   fill_in 'user[password]', with: password
   fill_in 'user[password_confirmation]', with: password_confirmation
   click_button "Register"
+end
 
+def create_new_book_and_review title:"newbook", new_author:"new_author", review:"This book was ok"
+  visit '/books/new' unless current_path == '/books/new'
+  fill_in 'book_title', with: title
+  select('Author_old', :from => 'book_author')
+  fill_in 'book_new_author', with: new_author
+  fill_in 'book_review', with: review
+  select(3, :from => 'book_rating')
+  click_button 'Add Book and Review'
+end
+def create_new_book_and_review_with_existing_author title:"newbook", new_author:"new_author", review:"This book was ok"
+  visit '/books/new' unless current_path == '/books/new'
+  fill_in 'book_title', with: title
+  select('Author_old', :from => 'book_author')
+  fill_in 'book_new_author', with: new_author
+  fill_in 'book_review', with: review
+  select(3, :from => 'book_rating')
+  click_button 'Add Book and Review'
 end
 
 

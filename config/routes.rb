@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   get '/sessions/new' => 'sessions#new'
   post '/sessions' => 'sessions#create'
   delete '/sessions' => 'sessions#destroy'
-  get '/books' => 'books#index'
-  get '/books/:book_id' => 'books#show'
   get '/books/new' => 'books#new'
+  get '/books/:book_id' => 'books#show'
+  get '/books' => 'books#index'
   post '/books' => 'books#create'
+  
+ 
+  
   post 'books/:book_id/reviews' => 'reviews#create'
   delete '/books/:book_id/reviews/:review_id' => 'reviews#destroy'
   get '/users/:user_id' => 'users#show'

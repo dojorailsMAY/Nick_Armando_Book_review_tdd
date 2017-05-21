@@ -1,2 +1,32 @@
-<h1>Books#new</h1>
-<p>Find me in app/views/books/new.html.erb</p>
+<h3><a href="/books">home</a></h3>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+      <%= e %>
+    <% end %>
+  <% end %>
+
+<h2>Add a new Book Title and Review</h2>
+<form action="/books" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="book_title">Book Title:</label>
+  <input type="text" id="book_title" name="book_title">
+  <h3>Author: </h3>
+  <label>Choose from the List: </label>
+    <select name="book_author">
+        <option value=""></option>
+        <option value="author">Author_old</option>
+    </select>
+   <label>Or add new author:</label>
+   <input type="text" name="book_new_author">
+   <label>Review:</label>
+   <textarea name="book_review"></textarea>
+   <label>Rating:</label>
+   <select name="book_rating" id="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+   <button type="submit">Add Book and Review</button>
+</form>
