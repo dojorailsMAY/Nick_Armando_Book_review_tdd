@@ -1,8 +1,10 @@
 class BooksController < ApplicationController
+  #testing for commit
   def index
     @user = User.find(session[:user_id])
     @books = Book.all
     @reviews = Review.order(created_at: :desc).limit(3)
+
   end
 
   def show
@@ -18,7 +20,7 @@ class BooksController < ApplicationController
     @author = Author.find_by(name: params[:book_author])
     if @author == nil
       @author = Author.create(name: params[:book_new_author])
-    end 
+    end
     @book = Book.create(title: params[:book_title], author: @author)
     @review = Review.create(content: params[:book_review], user:@user, book: @book, rating: params[:book_rating])
     if @book.valid? && @review.valid? && @author.valid?
