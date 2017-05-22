@@ -1,8 +1,10 @@
 class BooksController < ApplicationController
+  #testing for commit
   def index
     @user = User.find(session[:user_id])
     @books = Book.all
     @reviews = Review.order(created_at: :desc).limit(3)
+
   end
 
   def show
@@ -25,8 +27,6 @@ class BooksController < ApplicationController
     
       end
     end 
-
-
     @book = Book.create(title: params[:book_title], author: @author)
     if !@book.valid?
       flash[:errors] = @book.errors.full_messages
