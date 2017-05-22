@@ -7,10 +7,10 @@ feature 'Book creation page' do
     register
     @user = User.last
     @book1 = create(:book)
-    @review1 = create(:review, book:@book1, user: @user)
-    @review2 = create(:review, book:@book1, user: @user2, rating:4)
-    @review3 = create(:review, book:@book1, user: @user3, rating: 5)
-    @review4 = create(:review, book:@book1, user: @user, rating: 1)
+    create(:review, book:@book1, user: @user)
+    create(:review, book:@book1, user: @user2, rating:4)
+    create(:review, book:@book1, user: @user3, rating: 5)
+    create(:review, book:@book1, user: @user, rating: 1)
     visit '/books/%s' % @book1.id
   end
 
@@ -30,11 +30,5 @@ feature 'Book creation page' do
     expect(page).to have_field('rating')
     expect(page).to have_button('Submit Review')
   end
-
-
-
-
-
-
 
 end
