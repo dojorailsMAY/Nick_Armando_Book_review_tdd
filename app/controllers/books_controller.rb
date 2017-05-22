@@ -3,13 +3,14 @@ class BooksController < ApplicationController
   def index
     @user = User.find(session[:user_id])
     @books = Book.all
-    @reviews = Review.order(created_at: :desc).limit(3)
+    @reviews = Review.last_three
 
   end
 
   def show
     @book = Book.find(params[:book_id])
-    @reviews = @book.reviews
+    # @author = @book.author
+    @reviews = @book.reviews  # should use `includes`
   end
 
   def new

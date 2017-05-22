@@ -14,7 +14,7 @@ feature 'On the book page,' do
 
       add_review_on_book_page
 
-      expect(page).to have_current_path '/books/%s' % @book.id
+      expect(page).to have_current_path '/books/%s' % @book.id  # "/books/#{@book.id}"
       expect(page).to have_content "This is a book review"
       expect(page).to have_content "Rating: 5"
       expect(page).to have_selector('.review', count: 1)

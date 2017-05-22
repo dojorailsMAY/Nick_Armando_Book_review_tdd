@@ -16,6 +16,7 @@
         <option value=""></option>
         <option value="author">Author_old</option>
         <% @authors.each do |author| %>
+                      <!-- USE IDS FOR VALUES -->
           <option value="<%= author.name %>"><%= author.name %></option>
         <% end %>
     </select>
