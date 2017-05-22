@@ -8,7 +8,7 @@ feature 'On the book page,' do
       visit '/books/%s' % @book.id
   end
 
-  feature 'user attempts to create review with valid inputs' do
+  feature 'user attempts to create review with valid inputs -' do
 
     scenario 'review is successfully created' do
 
@@ -32,11 +32,21 @@ feature 'On the book page,' do
 
     scenario 'content is left blank' do
 
+      add_review_on_book_page content: ""
+      expect(page).to have_current_path '/books/%s' % @book.id
+      expect(page).to have_no_content "This is a book review"
+      expect(page).to have_no_selector ".review"
+      expect(page).to have_content "Content can't be blank"
+
 
     end
 
     scenario 'rating is left blank' do
-
+      add_review_on_book_page rating: 'Please choose'
+      expect(page).to have_current_path '/books/%s' % @book.id
+      expect(page).to have_no_content "This is a book review"
+      expect(page).to have_no_selector ".review"
+      expect(page).to have_content "Rating is required"
 
     end
 
