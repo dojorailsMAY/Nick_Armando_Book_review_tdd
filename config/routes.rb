@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'sessions#new'
+
   post '/users' => 'users#create'
   get '/sessions/new' => 'sessions#new'
   post '/sessions' => 'sessions#create'
@@ -8,9 +10,9 @@ Rails.application.routes.draw do
   get '/books/:book_id' => 'books#show'
   get '/books' => 'books#index'
   post '/books' => 'books#create'
-  
- 
-  
+
+
+
   post 'books/:book_id/reviews' => 'reviews#create'
   delete '/books/:book_id/reviews/:review_id' => 'reviews#destroy'
   get '/users/:user_id' => 'users#show'

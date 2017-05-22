@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Homepage' do
+feature 'Book creation page' do
   before(:each) do
     @user2 = create(:user, first_name:"Jane", email:'jane@doe.com')
     @user3 = create(:user, first_name:"Joe", email:'joe@doe.com')

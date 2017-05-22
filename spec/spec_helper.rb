@@ -48,6 +48,14 @@ def create_new_book_and_review_with_existing_author title:"newbook", new_author:
 end
 
 
+def add_review_on_book_page content: "This is a book review", rating: 5
+
+  fill_in 'content', with: content
+  select("#{rating}", :from => 'rating')
+  click_button "Submit Review"
+
+end
+
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
