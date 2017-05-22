@@ -8,18 +8,24 @@
 </head>
 <body>
 
-  <% if flash[:errors] %>
-    <% flash[:errors].each do |e| %>
-      <%= e %>
-    <% end %>
-  <% end %>
+
   <% if current_user %>
-  <a href="/books/new">Add Book and Review</a>
+    <% if request.env['PATH_INFO'] != '/books/new' %>
+      <a href="/books/new">Add Book and Review</a>
+    <% end %>
   <form action="/sessions" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" name="Logout" value="Logout">
   </form>
+  <% end %>
+
+
+
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+      <%= e %>
+    <% end %>
   <% end %>
 
 <%= yield %>

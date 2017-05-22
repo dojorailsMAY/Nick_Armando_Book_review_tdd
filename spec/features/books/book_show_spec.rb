@@ -14,6 +14,11 @@ feature 'Book creation page' do
     visit '/books/%s' % @book1.id
   end
 
+  scenario 'shows necessary navigation links' do
+    expect(page).to have_link("Home", href: "/books")
+
+  end
+
   scenario 'displays book title and author' do
     expect(page).to have_content(@book1.title)
     expect(page).to have_content(@book1.author.name)

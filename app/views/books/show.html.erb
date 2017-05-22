@@ -1,4 +1,7 @@
 
+<a href="/books">Home</a>
+<br>
+
 <%= @book.title %>
 Author: <%= @book.author.name %>
 <div class="">
@@ -14,6 +17,7 @@ Author: <%= @book.author.name %>
   <div class="">
     <h2>Add a Review </h2>
     <form class="" action="/books/<%= @book.id %>/reviews" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <label>Add a Review</label>
       <br>
       <textarea name="content"></textarea>
