@@ -15,6 +15,9 @@
     <select name="book_author">
         <option value=""></option>
         <option value="author">Author_old</option>
+        <% @authors.each do |author| %>
+          <option value="<%= author.name %>"><%= author.name %></option>
+        <% end %>
     </select>
    <label>Or add new author:</label>
    <input type="text" name="book_new_author">

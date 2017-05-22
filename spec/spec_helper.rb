@@ -46,6 +46,15 @@ def create_new_book_and_review_with_existing_author title:"newbook", new_author:
   select(3, :from => 'book_rating')
   click_button 'Add Book and Review'
 end
+def create_new_book_and_review_without_author title:"newbook", new_author:"", review:"This book was ok"
+  visit '/books/new' unless current_path == '/books/new'
+  fill_in 'book_title', with: title
+  select('', :from => 'book_author')
+  fill_in 'book_new_author', with: new_author
+  fill_in 'book_review', with: review
+  select(3, :from => 'book_rating')
+  click_button 'Add Book and Review'
+end
 
 
 def add_review_on_book_page content: "This is a book review", rating: 5

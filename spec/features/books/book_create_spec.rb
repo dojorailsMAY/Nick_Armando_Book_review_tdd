@@ -5,6 +5,8 @@ feature 'Book creation page' do
         register
         @user = User.last
         @book1 = create(:book)
+        @author1 = create(:author, name:"Jane")
+        @author2 = create(:author, name:"Jacky")
         visit '/books/new'
     end
 
@@ -49,21 +51,28 @@ feature 'Book creation page' do
         end
 
     end
-    feature 'submitting invalid input'
+    feature 'submitting invalid input' do
         scenario 'invalid title' do #Flash message wont appear
             create_new_book_and_review title:""
             expect(page).to have_current_path "/books/new"
             expect(page).to have_content "Title can't be blank"
         end
-        # scenario 'invalid author input' do #Author inputs ask with nick
-        #     create_new_book_and_review author:"", new_author:""
-        #     expect(page).to have_current_path "/books/new"
-        #     expect(page).to have_content "Author can't be blank"
-        # end
+        scenario 'invalid author input' do #Author inputs ask with nick
+            create_new_book_and_review new_author:""
+            expect(page).to have_current_path "/books/new"
+            expect(page).to have_content "Please select an existing author or add a new one"
+        end
         scenario 'empty review form' do
             create_new_book_and_review review:''
+             
             expect(page).to have_current_path "/books/new"
             expect(page).to have_content "Content can't be blank"
         end
 
+    end
+    scenario 'has multiple authors in select dropdown' do
+        expect(page).to have_content("Jane")
+        expect(page).to have_content("Jacky")
+
+    end
 end
